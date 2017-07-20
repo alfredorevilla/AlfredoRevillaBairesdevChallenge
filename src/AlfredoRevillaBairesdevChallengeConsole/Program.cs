@@ -3,7 +3,7 @@ using System.IO;
 
 namespace AlfredoRevillaBairesdevChallengeConsole
 {
-    internal class Entity
+    public class Entity
     {
         public string Country { get; set; }
         public string CurrentRole { get; set; }
@@ -15,7 +15,19 @@ namespace AlfredoRevillaBairesdevChallengeConsole
         public long PersonId { get; set; }
     }
 
-    internal class Mapper
+    public class EntityReader
+    {
+        private Mapper mapper;
+
+        public EntityReader(Mapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
+
+    }
+
+    public class Mapper
     {
         public IEnumerable<Entity> Read(string[] lines)
         {
@@ -48,7 +60,8 @@ namespace AlfredoRevillaBairesdevChallengeConsole
         private static void Main(string[] args)
         {
             Mapper mapper = new Mapper();
-            mapper.Map(File.ReadAllLines("people.in"));
+            var value = mapper.Read(File.ReadAllLines("people.in"));
+
         }
     }
 }
