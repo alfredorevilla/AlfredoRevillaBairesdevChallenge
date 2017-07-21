@@ -18,16 +18,18 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations
 
         public IEnumerable<Contact> GetPotentialCustomers(IEnumerable<Contact> collection)
         {
+            var value = Enumerable.Empty<Contact>();
             foreach (var item in requiredConditions)
             {
-                collection = collection.Where(item);
+                value = collection.Where(item);
             }
             var points = collection.ToDictionary(o => o, o => 1);
             foreach (var item in optionalConditions)
             {
-                collection.Where(o => true || item(o)).Select(o => points[o]++);
+                //value = value.Where(o => true || item(o)).Select(o => points[o]++);
+
             }
-            return collection.OrderByDescending(o => points[o]);
+            return value.OrderByDescending(o => points[o]);
         }
     }
 }
