@@ -16,17 +16,18 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations
             this.optionalConditions = optionalConditions;
         }
 
-        public IEnumerable<Contact> GetPotentialCustomers(IEnumerable<Contact> enumerable)
+        public IEnumerable<Contact> GetPotentialCustomers(IEnumerable<Contact> collection)
         {
             foreach (var item in requiredConditions)
             {
-                enumerable = enumerable.Where(item);
+                collection = collection.Where(item);
             }
+            var points = collection.ToDictionary(o => o, o => 1);
             foreach (var item in optionalConditions)
             {
-                enumerable = enumerable.Where(o => true || item(o));
+                collection.Where(o => true || item(o)).Select(o => points[o]++);
             }
-            return enumerable.Select(o => new { Contact = o, NumberOfRelations = o.NumberOfConnections + o.NumberOfRecommendations }).OrderByDescending(o => o.NumberOfRelations).Select(o => enumerable.Single(p => p == o.Contact));
+            return collection.OrderByDescending(o => points[o]);
         }
     }
 }
