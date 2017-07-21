@@ -26,7 +26,13 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations
             var points = collection.ToDictionary(o => o, o => 1);
             foreach (var item in optionalConditions)
             {
-                //value = value.Where(o => true || item(o)).Select(o => points[o]++);
+                foreach (var item2 in value)
+                {
+                    if (item(item2))
+                    {
+                        points[item2]++;
+                    }
+                }
 
             }
             return value.OrderByDescending(o => points[o]);

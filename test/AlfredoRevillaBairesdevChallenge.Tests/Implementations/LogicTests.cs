@@ -1,43 +1,12 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
 namespace AlfredoRevillaBairesdevChallenge.Implementations.Tests
 {
-    public class ConditionCollection : IEnumerable<Func<Contact, bool>>
-    {
-        private List<Func<Contact, bool>> _list;
-
-        public ConditionCollection()
-        {
-            this._list = new List<Func<Contact, bool>>();
-        }
-
-        public ConditionCollection Add(Func<Contact, bool> condition)
-        {
-            if (_list.Contains(condition))
-            {
-                throw new ArgumentException(nameof(condition));
-            }
-            _list.Add(condition);
-            return this;
-        }
-
-        public IEnumerator<Func<Contact, bool>> GetEnumerator()
-        {
-            return this._list.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)this._list).GetEnumerator();
-        }
-    }
-
     public class LogicTests
     {
         [Fact]
@@ -53,9 +22,7 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations.Tests
             var contacts = new List<Contact>();
             contacts.AddRange(lowRankedContacts);
             contacts.AddRange(topRankedContacts);
-            var optionalConditions = new List<Func<Contact, bool>>();
-            optionalConditions.Add(o => !string.IsNullOrEmpty(o.Country));
-            var logic = new Logic(new ConditionCollection().Add(o => true), optionalConditions);
+            var logic = new Logic(new ConditionCollection().Add(o => true), new ConditionCollection().Add(o => !o.Country.IsNullOrEmpty()));
 
             //  act
             var result = logic.GetPotentialCustomers(contacts);
