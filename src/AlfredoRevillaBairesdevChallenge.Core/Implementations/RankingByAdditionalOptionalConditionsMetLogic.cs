@@ -5,12 +5,12 @@ using System.Text;
 
 namespace AlfredoRevillaBairesdevChallenge.Implementations
 {
-    public class Logic : ILogic
+    public class RankingByAdditionalOptionalConditionsMetLogic : ILogic
     {
-        private IEnumerable<Func<Contact, bool>> requiredConditions;
         private IEnumerable<Func<Contact, bool>> optionalConditions;
+        private IEnumerable<Func<Contact, bool>> requiredConditions;
 
-        public Logic(IEnumerable<Func<Contact, bool>> requiredConditions, IEnumerable<Func<Contact, bool>> optionalConditions)
+        public RankingByAdditionalOptionalConditionsMetLogic(IEnumerable<Func<Contact, bool>> requiredConditions, IEnumerable<Func<Contact, bool>> optionalConditions)
         {
             this.requiredConditions = requiredConditions;
             this.optionalConditions = optionalConditions;
@@ -33,7 +33,6 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations
                         points[item2]++;
                     }
                 }
-
             }
             return value.OrderByDescending(o => points[o]);
         }
