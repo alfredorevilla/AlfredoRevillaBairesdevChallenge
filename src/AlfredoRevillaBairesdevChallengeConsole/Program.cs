@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using AlfredoRevillaBairesdevChallenge;
+using System.IO;
 
 namespace AlfredoRevillaBairesdevChallengeConsole
 {
@@ -6,6 +7,7 @@ namespace AlfredoRevillaBairesdevChallengeConsole
     {
         private static void Main(string[] args)
         {
+            new Application(null, null, null, null).Run();
         }
     }
 }

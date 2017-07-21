@@ -7,6 +7,10 @@ namespace AlfredoRevillaBairesdevChallenge
 {
     public class ArgumentValidator
     {
+        public static void ValidateNorNullOrEmpty(dynamic args)
+        {
+        }
+
         public static void ValidateNotNullOrEmpty<T>(IEnumerable<T> collection, string argumentName)
         {
             if (collection.IsNullOrEmpty())

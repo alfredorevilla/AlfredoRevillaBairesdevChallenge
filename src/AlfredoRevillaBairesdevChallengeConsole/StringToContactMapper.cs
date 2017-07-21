@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AlfredoRevillaBairesdevChallenge
 {
-    public class ContactMapper
+    public class StringToContactMapper : IStringToContactMapper
     {
         public Contact Map(string line)
         {

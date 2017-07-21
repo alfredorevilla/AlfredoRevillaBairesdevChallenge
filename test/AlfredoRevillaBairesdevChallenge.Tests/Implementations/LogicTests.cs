@@ -12,7 +12,7 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations.Tests
         public void Contacts_with_optional_condition_met_should_be_ranked_first()
         {
             //  arrange
-            var logic = new DefaultBasicLogic(new ConditionCollection().Add(o => true), new ConditionCollection().Add(o => !o.Country.IsNullOrEmpty()));
+            var logic = new RankingByAdditionalOptionalConditionsMetLogic(new ConditionCollection().Add(o => true), new ConditionCollection().Add(o => !o.Country.IsNullOrEmpty()));
             var topRanked = A.CollectionOfDummy<Contact>(new Random(1).Next(100));
             topRanked.ForEach(o => o.Country = Guid.NewGuid().ToString());
 
@@ -27,7 +27,7 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations.Tests
         public void No_conditions_should_return_empty_collection()
         {
             //  arrange
-            var logic = new DefaultBasicLogic(Enumerable.Empty<Func<Contact, bool>>(), Enumerable.Empty<Func<Contact, bool>>());
+            var logic = new RankingByAdditionalOptionalConditionsMetLogic(Enumerable.Empty<Func<Contact, bool>>(), Enumerable.Empty<Func<Contact, bool>>());
             var contacts = A.CollectionOfDummy<Contact>(new Random().Next(100));
 
             //  act
