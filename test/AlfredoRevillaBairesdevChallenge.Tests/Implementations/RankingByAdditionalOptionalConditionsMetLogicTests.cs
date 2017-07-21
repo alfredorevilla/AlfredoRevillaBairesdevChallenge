@@ -6,13 +6,13 @@ using Xunit;
 
 namespace AlfredoRevillaBairesdevChallenge.Implementations.Tests
 {
-    public class LogicTests
+    public class RankingByAdditionalOptionalConditionsMetLogicTests
     {
         [Fact]
         public void Contacts_with_optional_condition_met_should_be_ranked_first()
         {
             //  arrange
-            var logic = new RankingByAdditionalOptionalConditionsMetLogic(new ConditionCollection().Add(o => true), new ConditionCollection().Add(o => !o.Country.IsNullOrEmpty()));
+            var logic = new RankingByAdditionalOptionalConditionsMetLogic(new ConditionFluentCollection().Add(o => true), new ConditionFluentCollection().Add(o => !o.Country.IsNullOrEmpty()));
             var topRanked = A.CollectionOfDummy<Contact>(new Random(1).Next(100));
             topRanked.ForEach(o => o.Country = Guid.NewGuid().ToString());
 

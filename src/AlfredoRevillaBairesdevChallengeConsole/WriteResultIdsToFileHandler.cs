@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AlfredoRevillaBairesdevChallenge
 {
-    internal class WriteResultIdsToFileHandler : IResultHandler
+    public class WriteResultIdsToFileHandler : IResultHandler
     {
         private string _outputFilePathOrName;
 

@@ -3,7 +3,7 @@ using System;
 
 namespace AlfredoRevillaBairesdevChallenge
 {
-    internal class Program
+    public class Program
     {
         private static void Main(string[] args)
         {
@@ -11,11 +11,9 @@ namespace AlfredoRevillaBairesdevChallenge
                 new FileBasedContactRepository("people.in", new StringLineToContactMapper()),
                 new RankingByAdditionalOptionalConditionsMetLogic(
                     new FluentCollectionBase<Func<Contact, bool>>()
-                    .Add(o => true)
-                    .Add(o => false),
+                    .Add(o => true),
                     new FluentCollectionBase<Func<Contact, bool>>()
-                    .Add(o => true)
-                    .Add(o => false)),
+                    .Add(o => true)),
                 new WriteResultIdsToFileHandler("people.out"),
                 new ApplicationErrorHandler()).Run();
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlfredoRevillaBairesdevChallenge
 {
-    internal class ApplicationErrorHandler : IApplicationErrorHandler
+    public class ApplicationErrorHandler : IApplicationErrorHandler
     {
         public void HandleError(Exception e)
         {

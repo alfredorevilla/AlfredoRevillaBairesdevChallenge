@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AlfredoRevillaBairesdevChallenge
 {
-    internal class FileBasedContactRepository : IContactRepository
+    public class FileBasedContactRepository : IContactRepository
     {
         private string _filePath;
         private IStringToContactMapper _stringToContactMapper;
