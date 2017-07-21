@@ -4,16 +4,12 @@ using System.Text;
 
 namespace AlfredoRevillaBairesdevChallenge
 {
+    //  todo: logging!!!
     public class ApplicationErrorHandler : IApplicationErrorHandler
     {
         public void HandleError(Exception e)
         {
-            var color = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine();
-            Console.WriteLine("An application error has ocurred.");
-            Console.WriteLine();
-            Console.ForegroundColor = color;
+            ConsoleHelper.WriteRedLines("Un error de aplicación ha ocurrido.", "");
         }
     }
 }
