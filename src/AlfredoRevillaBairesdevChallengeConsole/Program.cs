@@ -12,19 +12,19 @@ namespace AlfredoRevillaBairesdevChallenge
             //  todo: move all these conditions to another class/code file
             var targetCountries = new[] { "peru", "argentina", "venezuela", "brazil" }; //etc
             var perNumberOfConnectionConditions = new List<Func<Contact, bool>>();
-            for (int i = 0; i < 10; i += 10)
+            for (int i = 0; i < 500; i += 10)
             {
                 var i2 = i;
                 perNumberOfConnectionConditions.Add(o => o.NumberOfConnections > i2);
             }
             var perRecommendatiosConditions = new List<Func<Contact, bool>>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 500; i++)
             {
                 var i2 = i;
                 perRecommendatiosConditions.Add(o => o.NumberOfRecommendations > i2);
             }
 
-            //  default to 100 ids
+            //  defaults to 100 ids
             new Application(
                 new FileBasedContactRepository("people.in", new StringLineToContactMapper()),
                 new RankingByAdditionalOptionalConditionsMetLogic(
