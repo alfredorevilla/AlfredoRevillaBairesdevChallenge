@@ -1,7 +1,6 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -10,25 +9,18 @@ namespace AlfredoRevillaBairesdevChallenge.Implementations.Tests
     public class LogicTests
     {
         [Fact]
-        public void Contact_with_optional_condition_met_should_be_ranked_first()
+        public void Contacts_with_optional_condition_met_should_be_ranked_first()
         {
             //  arrange
-            var lowRankedContacts = A.CollectionOfDummy<Contact>(10);
-            var topRankedContacts = A.CollectionOfDummy<Contact>(2);
-            foreach (var item in topRankedContacts)
-            {
-                item.Country = "asdsadsad";
-            }
-            var contacts = new List<Contact>();
-            contacts.AddRange(lowRankedContacts);
-            contacts.AddRange(topRankedContacts);
             var logic = new Logic(new ConditionCollection().Add(o => true), new ConditionCollection().Add(o => !o.Country.IsNullOrEmpty()));
+            var topRanked = A.CollectionOfDummy<Contact>(new Random(1).Next(100));
+            topRanked.ForEach(o => o.Country = Guid.NewGuid().ToString());
 
             //  act
-            var result = logic.GetPotentialCustomers(contacts);
+            var result = logic.GetPotentialCustomers(new FluentCollectionBase<Contact>(A.CollectionOfDummy<Contact>(new Random(1).Next(100))).AddRange(topRanked));
 
             //  assert
-            result.Take(2).SequenceEqual(topRankedContacts).Should().BeTrue();
+            result.Take(topRanked.Count).ShouldBeEquivalentTo(topRanked);
         }
 
         [Fact]
