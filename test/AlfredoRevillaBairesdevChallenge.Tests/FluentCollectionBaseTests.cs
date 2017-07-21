@@ -11,13 +11,19 @@ namespace AlfredoRevillaBairesdevChallenge.Tests
     public class FluentCollectionBaseTests
     {
         private FluentCollectionBase<int> _collection;
+        private Random _random;
+
+        public FluentCollectionBaseTests()
+        {
+            _random = new Random();
+        }
 
         [Fact]
         public void AddRangeTest()
         {
             //  arrange
             _collection = new FluentCollectionBase<int>();
-            var range = A.CollectionOfDummy<int>(new Random().Next(100));
+            var range = A.CollectionOfDummy<int>(_random.Next(100));
 
             //  act
             _collection.AddRange(range);
@@ -31,7 +37,7 @@ namespace AlfredoRevillaBairesdevChallenge.Tests
         {
             //  arrange
             _collection = new FluentCollectionBase<int>();
-            var number = new Random().Next(100);
+            var number = _random.Next(100);
 
             //  act
             _collection.Add(number);

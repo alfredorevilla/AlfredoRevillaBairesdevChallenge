@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AlfredoRevillaBairesdevChallenge
 {
-    public class ConditionFluentCollection : FluentCollectionBase<Func<Contact, bool>>
+    internal class ConditionFluentCollection : FluentCollectionBase<Func<Contact, bool>>
     {
     }
 }

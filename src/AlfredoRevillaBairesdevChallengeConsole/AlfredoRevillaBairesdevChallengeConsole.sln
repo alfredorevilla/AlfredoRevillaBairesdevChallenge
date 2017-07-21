@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfredoRevillaBairesdevChal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfredoRevillaBairesdevChallenge.Core", "..\AlfredoRevillaBairesdevChallenge.Core\AlfredoRevillaBairesdevChallenge.Core.csproj", "{75E1BA28-D9E2-4BF4-8D4E-65FA391F19EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlfredoRevillaBairesdevChallengeConsole.Tests", "..\..\test\AlfredoRevillaBairesdevChallengeConsole.Tests\AlfredoRevillaBairesdevChallengeConsole.Tests.csproj", "{16EBC29B-049D-4382-A1CA-CDF35E204910}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfredoRevillaBairesdevChallengeConsole.Tests", "..\..\test\AlfredoRevillaBairesdevChallengeConsole.Tests\AlfredoRevillaBairesdevChallengeConsole.Tests.csproj", "{16EBC29B-049D-4382-A1CA-CDF35E204910}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0A7A89B1-03F0-43CF-8D4C-9AF3CD3EC7D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A592B051-AE60-4B08-B1C1-AFA08A1D2670}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +40,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBE1E53B-D2CD-44FE-8311-961496AB17AA} = {0A7A89B1-03F0-43CF-8D4C-9AF3CD3EC7D1}
+		{C2A7A0B3-7840-4D93-ABC8-D028A0FFDA36} = {A592B051-AE60-4B08-B1C1-AFA08A1D2670}
+		{75E1BA28-D9E2-4BF4-8D4E-65FA391F19EA} = {0A7A89B1-03F0-43CF-8D4C-9AF3CD3EC7D1}
+		{16EBC29B-049D-4382-A1CA-CDF35E204910} = {A592B051-AE60-4B08-B1C1-AFA08A1D2670}
 	EndGlobalSection
 EndGlobal

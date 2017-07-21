@@ -11,18 +11,24 @@ namespace AlfredoRevillaBairesdevChallenge.Tests
 {
     public class WriteResultIdsToFileHandlerTests
     {
+        private const string outputFilePath = "dummy_output_file.dummy_extension";
         private WriteResultIdsToFileHandler _handler;
+        private Random _random;
+
+        public WriteResultIdsToFileHandlerTests()
+        {
+            _random = new Random();
+        }
 
         [Fact]
         public void Output_file_should_be_written()
         {
             //  arrange
-            var outputFilePath = "dummy_output_file.dummy_extension";
             if (File.Exists(outputFilePath))
             {
                 File.Delete(outputFilePath);
             }
-            var contacts = A.CollectionOfDummy<Contact>(new Random(1).Next(100));
+            var contacts = A.CollectionOfDummy<Contact>(_random.Next(100));
             _handler = new WriteResultIdsToFileHandler(outputFilePath);
 
             //  act
@@ -36,12 +42,11 @@ namespace AlfredoRevillaBairesdevChallenge.Tests
         public void Should_write_contacts_ids()
         {
             //  arrange
-            var outputFilePath = "dummy_output_file.dummy_extension";
             if (File.Exists(outputFilePath))
             {
                 File.Delete(outputFilePath);
             }
-            var contacts = A.CollectionOfDummy<Contact>(new Random(1).Next(100));
+            var contacts = A.CollectionOfDummy<Contact>(_random.Next(100));
             _handler = new WriteResultIdsToFileHandler(outputFilePath);
 
             //  act
