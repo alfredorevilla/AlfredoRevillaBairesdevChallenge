@@ -24,6 +24,7 @@ namespace AlfredoRevillaBairesdevChallenge
                 perRecommendatiosConditions.Add(o => o.NumberOfRecommendations > i2);
             }
 
+            //  default to 100 ids
             new Application(
                 new FileBasedContactRepository("people.in", new StringLineToContactMapper()),
                 new RankingByAdditionalOptionalConditionsMetLogic(
