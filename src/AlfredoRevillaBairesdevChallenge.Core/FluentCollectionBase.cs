@@ -30,6 +30,15 @@ namespace AlfredoRevillaBairesdevChallenge
             return this;
         }
 
+        public virtual FluentCollectionBase<TElement> ForEach(Action<TElement> action)
+        {
+            foreach (var item in this)
+            {
+                action(item);
+            }
+            return this;
+        }
+
         public IEnumerator<TElement> GetEnumerator()
         {
             return this._list.GetEnumerator();
