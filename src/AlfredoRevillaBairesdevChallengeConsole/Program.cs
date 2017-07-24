@@ -11,41 +11,25 @@ namespace AlfredoRevillaBairesdevChallenge
         {
             //  todo: move all these conditions to another class/code file
             var targetCountries = new[] { "peru", "argentina", "venezuela", "brazil" }; //etc
-            var perNumberOfConnectionConditions = new List<Func<Contact, bool>>();
-            for (int i = 0; i < 500; i += 10)
-            {
-                var i2 = i;
-                perNumberOfConnectionConditions.Add(o => o.NumberOfConnections > i2);
-            }
-            var perRecommendatiosConditions = new List<Func<Contact, bool>>();
-            for (int i = 0; i < 500; i++)
-            {
-                var i2 = i;
-                perRecommendatiosConditions.Add(o => o.NumberOfRecommendations > i2);
-            }
 
             //  defaults to 100 ids
             new Application(
                 new FileBasedContactRepository("people.in", new StringLineToContactMapper()),
-                new RankingByAdditionalOptionalConditionsMetLogic(
+                new ScoredConditionLogic(
 
                     //
-                    //  condiciones requeridas
+                    //  condiciones, todas retornan 0 o más puntos, ahora el control es mayor
                     //
-                    new FluentCollectionBase<Func<Contact, bool>>()
-                    //  el país debe ser latinoamericano
-                    .Add(o => targetCountries.Contains(o.Country, StringComparer.CurrentCultureIgnoreCase))
+                    new FluentCollectionBase<ScoredCondition>()
+                    //  para que prorice contactos latinoamericanos le ponemos un puntaje muy alto a tal condición,
+                    //  ahora bien si se desea excluir todo pais no lo sea podemos hacerlo previamente en el repository
+                    .Add(o => targetCountries.Contains(o.Country, StringComparer.CurrentCultureIgnoreCase) ? 1000 : 0)
                     //  no debe tener rol
-                    .Add(o => o.CurrentRole.IsNullOrEmpty()),
-
-                    //
-                    //  condiciones opcionales: a mas cumplidas más puntaje
-                    //
-                    new FluentCollectionBase<Func<Contact, bool>>()
+                    .Add(o => o.CurrentRole.IsNullOrEmpty() ? 1 : 0)
                     //  1 punto por cada 10 conexiones que tenga
-                    .AddRange(perNumberOfConnectionConditions)
+                    .Add(o => (int)Math.Floor((decimal)(o.NumberOfConnections / 10)))
                     //  1 punto por cada recomendacione que tenga
-                    .AddRange(perRecommendatiosConditions)),
+                    .Add(o => o.NumberOfRecommendations)),
                 new WriteResultIdsToFileHandler("people.out"),
                 new ApplicationErrorHandler()).Run();
         }

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Program.cs.oldversion" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AlfredoRevillaBairesdevChallenge.Core\AlfredoRevillaBairesdevChallenge.Core.csproj" />
   </ItemGroup>
 
